@@ -61,7 +61,9 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	fmt.Println(out)
+	fmt.Printf("output: %v\n", out)
+	low, high := cel.EstimateCost(compiledProg)
+	fmt.Printf("cost (lower bound, upper bound): %d, %d\n", low, high)
 	memProf, err := os.Create(memProfPath)
 	if err != nil {
 		log.Fatal(err)
