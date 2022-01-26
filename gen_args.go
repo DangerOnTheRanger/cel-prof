@@ -23,11 +23,20 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	l := make([]string, numBytes)
-	for i, _ := range l {
-		l[i] = "0"
+	numZerosStr := os.Args[2]
+	numZeros, err := strconv.Atoi(numZerosStr)
+	if err != nil {
+		log.Fatal(err)
 	}
-	argsStr := os.Args[2]
+	paddingString := ""
+	for i := 0; i < numZeros; i++ {
+		paddingString += "0"
+	}
+	l := make([]string, numBytes)
+	for i := range l {
+		l[i] = paddingString
+	}
+	argsStr := os.Args[3]
 	jsonArgs := args{l, argsStr}
 
 	bytes, err := json.Marshal(jsonArgs)
